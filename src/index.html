@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WSH Control</title>
+</head>
+<body>
+  <h1>Windows Script Host Control</h1>
+  <button onclick="checkWSH HX2">Check WSH Status</button>
+  <button onclick="activateWSH()">Activate WSH</button>
+  <p id="status">Status: Unknown</p>
+  <script>
+    const status = document.getElementById('status');
+    async function checkWSH() {
+      const result = await window.WSHControl.checkWSH();
+      status.textContent = `Status: ${result}`;
+    }
+    async function activateWSH() {
+      try {
+        const result = await window.WSHControl.activateWSH();
+        status.textContent = `Status: ${result}`;
+      } catch (err) {
+        status.textContent = `Error: ${err}`;
+      }
+    }
+  </script>
+</body>
+</html>
